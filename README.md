@@ -6,36 +6,46 @@
 
 ## 手順
 
-1. このリポジトリを **Fork** する（画面右上の「Fork」ボタン）
-2. 自分のリポジトリをローカルに **Clone** する
+### 1. Fork する
+
+画面右上の **「Fork」** ボタンをクリック → 自分のアカウントにリポジトリがコピーされる。
+
+### 2. Clone する
+
+Fork した**自分の**リポジトリのページを開き、緑の「Code」ボタン → URL をコピーして実行：
 
 ```bash
 git clone https://github.com/自分のユーザー名/kiso-prog2-09-0608.git
 cd kiso-prog2-09-0608
 ```
 
-3. 以下の順にコンパイル・実行して確認する（各ファイルの先頭コメントに手順あり）
+### 3. ファイルを順に進める
 
-   **① デモ（動かして確認するだけ）**
-   ```
-   step0_no_file.c  → step0_with_file.c
-   step1_write.c    → step1_append.c
-   step2_no_null_check.c → step2_with_null_check.c
-   step3_no_fclose.c → step3_with_fclose.c
-   step4_read_one.c  → step4_read_all.c → step5_all.c
-   ```
+**① デバッグクイズ（まずここから）**
+```
+debug_quiz.c  ← バグを3つ直してコンパイル・実行する
+```
 
-   **② 演習（`/* TODO */` の部分を自分で埋める）**
-   ```
-   ex_write.c → ex_read.c
-   ```
+**② デモ（動かして確認するだけ）**
+```
+step0_no_file.c  → step0_with_file.c
+step1_write.c    → step1_append.c
+step2_no_null_check.c → step2_with_null_check.c
+step3_no_fclose.c → step3_with_fclose.c
+step4_read_one.c  → step4_read_all.c → step5_all.c
+```
 
-   **③ 発展（余った時間で挑戦）**
-   ```
-   task1_log.c → task1_count.c → task2_max.c → task3_copy.c
-   ```
+**③ 演習（`/* TODO */` の部分を自分で埋める）**
+```
+ex_write.c → ex_read.c
+```
 
-4. 全部終わったら **Push** する
+**④ 発展（余った時間で挑戦）**
+```
+task1_log.c → task1_count.c → task2_max.c → task3_copy.c
+```
+
+### 4. Push する
 
 ```bash
 git add .
@@ -43,40 +53,78 @@ git commit -m "演習完了"
 git push origin main
 ```
 
-5. GitHub で **Pull Request** を出す
-   - タイトルは **自分の名前**（例：`山本周`）
-   - base: `yamashu00/kiso-prog2-09-0608` ← `main`
+### 5. Pull Request を出す → 下の「PR の出し方」を参照
+
+---
+
+## PR の出し方（丁寧に読むこと）
+
+### ① GitHub で自分の Fork ページを開く
+
+`https://github.com/自分のユーザー名/kiso-prog2-09-0608`
+
+### ② 「Contribute」→「Open pull request」をクリック
+
+ページ上部に黄色いバナーか「Contribute」ボタンが表示される。
+
+### ③ 設定を確認する（ここが間違いやすい）
+
+以下の4か所を必ず確認すること：
+
+```
+base repository: yamashu00/kiso-prog2-09-0608   ← 先生のリポジトリ
+base:            main                            ← main ブランチ
+head repository: 自分のユーザー名/kiso-prog2-09-0608  ← 自分のリポジトリ
+compare:         main                            ← main ブランチ
+```
+
+**よくある間違い：**
+- `base repository` が自分のリポジトリになっている → `yamashu00/kiso-prog2-09-0608` に変える
+- `base repository` の選択肢が出ない場合 → 「compare across forks」というリンクをクリックすると選べる
+
+### ④ タイトルを自分の名前にする
+
+```
+タイトル欄: 山本周    ← 自分の名前（フルネーム）を入力
+```
+
+### ⑤「Create pull request」をクリック
+
+緑のボタンを押して完了。自分のPRが `yamashu00/kiso-prog2-09-0608` の「Pull requests」タブに表示されれば提出完了。
 
 ---
 
 ## ファイル一覧
 
-| ファイル | 難易度 | 内容 |
-|---------|-------|------|
-| `ex_write.c` | ★ | 名前・整数・小数をCSVに書く |
-| `ex_read.c` | ★ | CSVを読み込んで表示する |
-| `task1_log.c` | ★★ | 実行するたびに1行追記する |
-| `task1_count.c` | ★★ | ログの行数を数える |
-| `task2_max.c` | ★★★ | 最高気温の場所を探す |
-| `task3_copy.c` | ★★★★ | CSVファイルをコピーする |
-
-`ex_write.c` と `ex_read.c` は全員やること。  
-`task1〜task3` は余った時間で挑戦してみよう。
+| ファイル | 内容 |
+|---------|------|
+| `debug_quiz.c` | デバッグクイズ（バグを3つ直す） |
+| `step0_no_file.c` | デモ：ファイルなし（常に1回目） |
+| `step0_with_file.c` | デモ：ファイルあり（実行ごとに増える） |
+| `step1_write.c` | 書き込み（NULLチェックなし） |
+| `step1_append.c` | 追記モード "a" |
+| `step2_no_null_check.c` | NULLチェックなし → クラッシュ |
+| `step2_with_null_check.c` | NULLチェックあり → 正しい |
+| `step3_no_fclose.c` | fclose なし |
+| `step3_with_fclose.c` | fclose あり → 正しい |
+| `step4_read_one.c` | 1行だけ読む |
+| `step4_read_all.c` | 全行読む（ループ） |
+| `step5_all.c` | 書いて・読んで・確認（まとめ） |
+| `ex_write.c` | ★ 演習：CSVに書く（TODO あり） |
+| `ex_read.c` | ★ 演習：CSVを読む（TODO あり） |
+| `task1_log.c` | ★★ 発展：追記ログ |
+| `task1_count.c` | ★★ 発展：行数カウント |
+| `task2_max.c` | ★★★ 発展：最高気温を探す |
+| `task3_copy.c` | ★★★★ 発展：ファイルコピー |
 
 ---
 
 ## コンパイルと実行（例）
 
 ```bash
-gcc ex_write.c -o ex_write
-./ex_write
+gcc debug_quiz.c -o debug_quiz
+./debug_quiz
 ```
-
----
-
-## 参考資料
-
-授業資料（lesson-09-ref.md）を見ながら進めてよい。
 
 ---
 
@@ -95,3 +143,9 @@ printf("%s は %d°C、湿度 %.1f%%\n", "教室", 25, 60.5);
 //       ↑       ↑           ↑
 //      char[]  int         float
 ```
+
+---
+
+## 参考資料
+
+授業資料（lesson-09-ref.md）を見ながら進めてよい。
